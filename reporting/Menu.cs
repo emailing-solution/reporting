@@ -20,7 +20,7 @@ namespace reporting
 
         private void reportingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            report r = new report();
+            Report r = new Report();
             r.Show();
         }
     }

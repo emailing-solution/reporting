@@ -28,7 +28,7 @@ namespace reporting
             if (MessageBox.Show("Save current ? all old data will be erased", "confirmation !", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 File.WriteAllText("data.txt", txt_emails.Text.Trim());
-                MessageBox.Show("Saved", "Emails settings", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show("Saved", "Emails settings", MessageBoxButtons.OK);
                 txt_emails.Text = string.Empty;
             }
         }
