@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
+using System.Threading;
 
 namespace reporting
 {
@@ -67,25 +58,140 @@ namespace reporting
 
         private void Btn_yahoo_action_Click(object sender, EventArgs e)
         {
-
-            data.Yahoo yahoo = new data.Yahoo("sanaezayed@yahoo.com", "aqwxsz1A");
-            yahoo.Init(false);
-            txt_log.AppendText("init\n");
-            yahoo.Connect();
-            txt_log.AppendText("connecting\n");
-            if (yahoo.CheckIfConnected())
+            bool checkboxspam  = false;
+            bool checkboxinbox = false;
+            foreach (Control item in group_spam_yahoo.Controls)
             {
-                txt_log.AppendText("connected\n");
-                yahoo.Navigate("https://mail.yahoo.com/d/folders/1?.intl=uk&.lang=en-GB");
-                txt_log.AppendText(yahoo.GoToSpamFolder().ToString());
-                yahoo.ReadNotSpam();
+                CheckBox c = item as CheckBox;
+                if(c != null && c.Checked)
+                {
+                    checkboxspam = true;
+                    break;
+                }
+            }
+            foreach (Control item in group_inbox_yahoo.Controls)
+            {
+                CheckBox c = item as CheckBox;
+                if (c != null && c.Checked)
+                {
+                    checkboxinbox = true;
+                    break;
+                }
+            }
+
+            if (!checkboxspam && !checkboxinbox)
+            {
+                MessageBox.Show("Please select an action to do", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                txt_log.AppendText("not connected verify\n");
+
+                data.Yahoo yahoo = new data.Yahoo("sanaezayed@yahoo.com", "aqwxsz1A");
+
+                yahoo.Init();
+                yahoo.Connect();
+               
+                if (yahoo.CheckIfConnected())
+                {
+
+
+                    yahoo.Navigate("https://mail.yahoo.com/neo/b/launch");
+                    //to spam action
+                    if (checkboxspam)
+                    {
+                        spam(yahoo);
+                        if(checkboxinbox)
+                        {
+                            inbox(yahoo);
+                        }
+                    }
+
+
+                    //to inbox action()
+                    if(checkboxinbox)
+                    {
+                        inbox(yahoo);
+                    }
+                    //yahoo.Destroy();
+
+                }
+                else
+                {
+                    txt_log.AppendText("Could not connect to this account => ");
+                }
+            }
+        }
+        private void spam(data.Yahoo yahoo)
+        {
+            
+
+            if (yahoo.GoToSpamFolder())
+            {
+                //case 1 
+                if (checkbox_readNotSpam.Checked)
+                {
+
+                    while (yahoo.ReadNotSpam()) { }
+                }
+                //case 2
+                else if (check_checkNotSpam.Checked)
+                {
+
+                    while (yahoo.CheckNotSpam()) { }
+                }
+                //case 3
+                else if (check_ckeckallNotSpam.Checked)
+                {
+
+                    while (yahoo.CheckAllNotSpam()) { }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Cant Find Spam Folder", "SPAM", MessageBoxButtons.OK);
             }
         }
 
-        
+        private void inbox(data.Yahoo yahoo)
+        {
+            bool repeat (int s)
+            {
+                var status = yahoo.OpenArchive(s);
+                if ((bool)status[0])
+                {
+                    s = (int)status[1];
+                    return repeat(s);
+                }
+                return false;
+            }
+
+            if(yahoo.GotoInboxFolder())
+            {
+                
+                if(open_archive.Checked)
+                {
+                    int size = 0;
+                    while (repeat(size))
+                    {
+                        Application.DoEvents();
+                    }
+                     
+                }
+            }
+            else
+            {
+                MessageBox.Show("Cant Find Inbox Folder", "INBOX", MessageBoxButtons.OK);
+            }
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
