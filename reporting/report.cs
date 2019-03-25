@@ -7,9 +7,10 @@ namespace reporting
 {
     public partial class Report : Form
     {
-        Random random = new Random();
+
         //Déclaration du SemaphoreSlim qui prendra en paramètre le nombre de places disponibles.
-        SemaphoreSlim doorman;
+        public SemaphoreSlim Doorman { get; set ; }
+        public Random Random { get; set; }
 
         public Report()
         {
@@ -59,7 +60,7 @@ namespace reporting
                 if (accounts.Length > 0)
                 {
                     int sizeThreads = !string.IsNullOrEmpty(txt_thread.Text) ? int.Parse(txt_thread.Text.Trim()) : 1;
-                    doorman = new SemaphoreSlim(sizeThreads);
+                    Doorman = new SemaphoreSlim(sizeThreads);
 
                     foreach (var account in accounts)
                     {
@@ -87,7 +88,7 @@ namespace reporting
 
         private void ActionYahoo(string[] accountDetail)
         {
-            doorman.Wait();
+            Doorman.Wait();
             data.Yahoo yahoo;
             if (accountDetail.Length == 2)
             {
@@ -99,7 +100,7 @@ namespace reporting
             }
             else
             {
-                doorman.Release();
+                Doorman.Release();
                 return;
             }
             yahoo.Init();
@@ -113,7 +114,7 @@ namespace reporting
                 {
                     Thread.Sleep(5000);
                 }
-                doorman.Release();
+                Doorman.Release();
                 return;
             }
 
@@ -138,7 +139,7 @@ namespace reporting
 
                 yahoo.Destroy();
             }
-            doorman.Release();
+            Doorman.Release();
 
         }
 
@@ -329,10 +330,8 @@ namespace reporting
 
         private void edit_emails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Hide();
             save_emails s = new save_emails();
             s.ShowDialog();
-            Close();
         }
 
         private void open_CheckedChanged(object sender, EventArgs e)
@@ -360,7 +359,7 @@ namespace reporting
 
         private void Delete_emails(string[] accountDetail)
         {
-            doorman.Wait();
+            Doorman.Wait();
             data.Yahoo yahoo;
             if (accountDetail.Length == 2)
             {
@@ -372,7 +371,7 @@ namespace reporting
             }
             else
             {
-                doorman.Release();
+                Doorman.Release();
                 return;
             }
 
@@ -409,7 +408,7 @@ namespace reporting
             }
 
             yahoo.Destroy();
-            doorman.Release();
+            Doorman.Release();
         }
 
         private void Btn_delete_yahoo_Click(object sender, EventArgs e)
@@ -421,7 +420,7 @@ namespace reporting
                 if (accounts.Length > 0)
                 {
                     int sizeThreads = !string.IsNullOrEmpty(txt_thread.Text) ? int.Parse(txt_thread.Text.Trim()) : 1;
-                    doorman = new SemaphoreSlim(sizeThreads);
+                    Doorman = new SemaphoreSlim(sizeThreads);
 
                     foreach (var account in accounts)
                     {
@@ -443,6 +442,11 @@ namespace reporting
                     MessageBox.Show("Add some accounts", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void Report_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

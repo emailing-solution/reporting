@@ -106,7 +106,7 @@ namespace reporting
                 {
                     Hide();
                     Report r = new Report();
-                    r.ShowDialog();
+                    r.Show();
                     Close();
                 }
                 else
