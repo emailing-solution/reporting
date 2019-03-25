@@ -2,196 +2,346 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Net;
 
 namespace reporting
 {
     public partial class Report : Form
     {
         Random random = new Random();
+        //Déclaration du SemaphoreSlim qui prendra en paramètre le nombre de places disponibles.
+        SemaphoreSlim doorman;
+
         public Report()
         {
             InitializeComponent();
-            if(File.Exists("data.txt") && new FileInfo("data.txt").Length > 0)
+            if (File.Exists("data.txt") && new FileInfo("data.txt").Length > 0)
             {
                 txt_emails.Text = File.ReadAllText("data.txt");
             }
-            else
-            {
-                Hide();
-                MessageBox.Show("data.txt file not found or empty! please check", "error", MessageBoxButtons.OK);
-                Close();
-                               
-            }
         }
 
-        private void Btn_spam_yahoo_Click(object sender, EventArgs e)
+        private bool Check_spam_checked()
         {
-            
+            foreach (Control item in group_spam_yahoo.Controls)
+            {
+                RadioButton c = item as RadioButton;
+                if (c != null && c.Checked)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
-        private void checkbox_readNotSpam_CheckedChanged(object sender, EventArgs e)
+        private bool Check_inbox_checked()
         {
-            if(checkbox_readNotSpam.Checked)
+            foreach (Control item in group_inbox_yahoo.Controls)
             {
-                check_checkNotSpam.Checked = false;
-                check_ckeckallNotSpam.Checked = false;
+                RadioButton c = item as RadioButton;
+                if (c != null && c.Checked)
+                {
+                    return true;
+                }
             }
-        }
-
-        private void check_checkNotSpam_CheckedChanged(object sender, EventArgs e)
-        {
-            if (check_checkNotSpam.Checked)
-            {
-                checkbox_readNotSpam.Checked = false;
-                check_ckeckallNotSpam.Checked = false;
-            }
-        }
-
-        private void check_ckeckallNotSpam_CheckedChanged(object sender, EventArgs e)
-        {
-            if (check_ckeckallNotSpam.Checked)
-            {
-                check_checkNotSpam.Checked = false;
-                checkbox_readNotSpam.Checked = false;
-            }
+            return false;
         }
 
         private void Btn_yahoo_action_Click(object sender, EventArgs e)
         {
-            bool checkboxspam  = false;
-            bool checkboxinbox = false;
-            foreach (Control item in group_spam_yahoo.Controls)
-            {
-                CheckBox c = item as CheckBox;
-                if(c != null && c.Checked)
-                {
-                    checkboxspam = true;
-                    break;
-                }
-            }
-            foreach (Control item in group_inbox_yahoo.Controls)
-            {
-                CheckBox c = item as CheckBox;
-                if (c != null && c.Checked)
-                {
-                    checkboxinbox = true;
-                    break;
-                }
-            }
 
-            if (!checkboxspam && !checkboxinbox)
+            if (!Check_spam_checked() && !Check_inbox_checked())
             {
                 MessageBox.Show("Please select an action to do", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-
-                data.Yahoo yahoo = new data.Yahoo("sanaezayed@yahoo.com", "aqwxsz1A");
-
-                yahoo.Init();
-                yahoo.Connect();
-               
-                if (yahoo.CheckIfConnected())
+                var accounts = txt_emails.Text.Split('\n');
+                if (accounts.Length > 0)
                 {
+                    int sizeThreads = !string.IsNullOrEmpty(txt_thread.Text) ? int.Parse(txt_thread.Text.Trim()) : 1;
+                    doorman = new SemaphoreSlim(sizeThreads);
 
-
-                    yahoo.Navigate("https://mail.yahoo.com/neo/b/launch");
-                    //to spam action
-                    if (checkboxspam)
+                    foreach (var account in accounts)
                     {
-                        spam(yahoo);
-                        if(checkboxinbox)
+                        string[] accountDetail = account.Split(':');
+                        //Création et lancement des threads.
+
+                        new Thread(() => 
                         {
-                            inbox(yahoo);
-                        }
+                            ActionYahoo(accountDetail);
+
+                        }).Start();
+                        
+                        //On laisse passer 500ms entre les création de thread.
+                        Thread.Sleep(500);
                     }
-
-
-                    //to inbox action()
-                    if(checkboxinbox)
-                    {
-                        inbox(yahoo);
-                    }
-                    //yahoo.Destroy();
-
                 }
                 else
                 {
-                    txt_log.AppendText("Could not connect to this account => ");
+                    MessageBox.Show("Add some accounts", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
+
             }
         }
-        private void spam(data.Yahoo yahoo)
+
+        private void ActionYahoo(string[] accountDetail)
+        {
+            doorman.Wait();
+            data.Yahoo yahoo;
+            if (accountDetail.Length == 2)
+            {
+                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1]);
+            }
+            else if (accountDetail.Length == 4)
+            {
+                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
+            }
+            else
+            {
+                doorman.Release();
+                return;
+            }
+            yahoo.Init();
+
+            if (open.Checked)
+            {
+                yahoo.Connect();
+                yahoo.Navigate("https://mail.yahoo.com/");
+                
+                while(!yahoo.CheckIfClosed())
+                {
+                    Thread.Sleep(5000);
+                }
+                doorman.Release();
+                return;
+            }
+
+            yahoo.Connect();
+
+            if (yahoo.CheckIfConnected())
+            {
+
+                yahoo.Navigate("https://mail.yahoo.com/neo/b/launch");
+
+                //to spam action
+                if (Check_spam_checked())
+                {
+                    SpamYahoo(yahoo);
+                }
+
+                //to inbox action()
+                if (Check_inbox_checked())
+                {
+                    InboxYahoo(yahoo);
+                }
+
+                yahoo.Destroy();
+            }
+            doorman.Release();
+
+        }
+
+        private void SpamYahoo(data.Yahoo yahoo)
         {
             
 
             if (yahoo.GoToSpamFolder())
             {
                 //case 1 
-                if (checkbox_readNotSpam.Checked)
+                if (read_not_spam.Checked)
                 {
 
-                    while (yahoo.ReadNotSpam()) { }
+                    while (yahoo.ReadNotSpam()) { Application.DoEvents(); }
                 }
                 //case 2
-                else if (check_checkNotSpam.Checked)
+                if (check_not_spam.Checked)
                 {
 
-                    while (yahoo.CheckNotSpam()) { }
+                    while (yahoo.CheckNotSpam()) { Application.DoEvents(); }
                 }
                 //case 3
-                else if (check_ckeckallNotSpam.Checked)
+                if (ckeckall_not_spam.Checked)
                 {
 
-                    while (yahoo.CheckAllNotSpam()) { }
+                    while (yahoo.CheckAllNotSpam()) { Application.DoEvents(); }
                 }
-            }
-            else
-            {
-                MessageBox.Show("Cant Find Spam Folder", "SPAM", MessageBoxButtons.OK);
             }
         }
 
-        private void inbox(data.Yahoo yahoo)
+        private void InboxYahoo(data.Yahoo yahoo)
         {
-            bool repeat (int s)
+            int size = 0;
+            if (yahoo.GotoInboxFolder())
             {
-                var status = yahoo.OpenArchive(s);
-                if ((bool)status[0])
+                //case 1  open and archive
+                if (open_archive.Checked)
                 {
-                    s = (int)status[1];
-                    return repeat(s);
-                }
-                return false;
-            }
+                    //all magic happen here
+                    bool repeat_arhive(int page, bool star, bool click, string search)
+                    {
+                        var status = yahoo.OpenArchive(page, star, click, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_arhive(page, star, click, search);
+                        }
+                        return false;
+                    }
 
-            if(yahoo.GotoInboxFolder())
-            {
-                
-                if(open_archive.Checked)
-                {
-                    int size = 0;
-                    while (repeat(size))
+                    while (repeat_arhive(size, star_click.Checked, body_click.Checked, txt_subject.Text))
                     {
                         Application.DoEvents();
                     }
-                     
+                }
+
+                //case 2 open and reply and archive
+                if (open_reply_archive.Checked)
+                {
+                    //all magic happen here
+                    bool repeat_open_reply_arhive(int page, bool star, bool click, string search)
+                    {
+                        var status = yahoo.OpenReplyArchive(page, star, click, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_open_reply_arhive(page, star, click, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_open_reply_arhive(size, star_click.Checked, body_click.Checked, txt_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+
+                // case 3 open and reply
+                if (open_reply.Checked)
+                {
+                    //all magic happen here
+                    bool repeat_open_reply(int page, bool star, bool click, string search)
+                    {
+                        var status = yahoo.OpenReply(page, star, click, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_open_reply(page, star, click, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_open_reply(size, star_click.Checked, body_click.Checked, txt_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+
+                //case 4 select archive
+                if (select_archive.Checked)
+                {
+                    //all magic happen here
+                    bool repeat_select_archive(int page, bool star, string search)
+                    {
+                        var status = yahoo.SelectArchive(page, star, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_select_archive(page, star, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_select_archive(size, star_click.Checked, txt_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+
+                //case 5 select all archive
+                if (select_all_archive.Checked)
+                {
+                    //all magic happen here
+                    bool repeat_select_all_archive(int page, bool star)
+                    {
+                        var status = yahoo.SelectAllArchive(page, star);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_select_all_archive(page, star);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_select_all_archive(size, star_click.Checked))
+                    {
+                        Application.DoEvents();
+                    }
                 }
             }
-            else
+            
+        }
+
+        private void body_click_CheckedChanged(object sender, EventArgs e)
+        {
+            if(select_archive.Checked || select_all_archive.Checked)
             {
-                MessageBox.Show("Cant Find Inbox Folder", "INBOX", MessageBoxButtons.OK);
+                body_click.Checked = false;
+            }
+
+            if(open.Checked)
+            {
+ 
+                body_click.Checked = false;
             }
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+        private void select_all_archive_CheckedChanged(object sender, EventArgs e)
         {
-
+            body_click.Checked = false;
         }
 
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        private void select_archive_CheckedChanged(object sender, EventArgs e)
         {
+            body_click.Checked = false;
+        }
 
+        private void edit_emails_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Hide();
+            save_emails s = new save_emails();
+            s.ShowDialog();
+            Close();
+        }
+
+        private void open_CheckedChanged(object sender, EventArgs e)
+        {
+            star_click.Checked = false;
+            body_click.Checked = false;
+        }
+
+        private void star_click_CheckedChanged(object sender, EventArgs e)
+        {
+            if (open.Checked)
+            {
+                star_click.Checked = false;
+ 
+            }
+        }
+
+        private void txt_thread_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            //{
+            //    e.Handled = true;
+            //}
         }
     }
 }

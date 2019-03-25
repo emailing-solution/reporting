@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(save_emails));
             this.txt_emails = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_load = new System.Windows.Forms.Button();
-            this.btn_save = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_save = new System.Windows.Forms.Button();
+            this.btn_load = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,15 +59,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Emails";
             // 
-            // btn_load
+            // label1
             // 
-            this.btn_load.Location = new System.Drawing.Point(179, 538);
-            this.btn_load.Name = "btn_load";
-            this.btn_load.Size = new System.Drawing.Size(87, 23);
-            this.btn_load.TabIndex = 1;
-            this.btn_load.Text = "load";
-            this.btn_load.UseVisualStyleBackColor = true;
-            this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(190, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(178, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "EMAIL:PASSWORD:PROXY:PORT";
             // 
             // btn_save
             // 
@@ -79,14 +78,15 @@
             this.btn_save.UseVisualStyleBackColor = true;
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // label1
+            // btn_load
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(190, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(178, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "EMAIL:PASSWORD:PROXY:PORT";
+            this.btn_load.Location = new System.Drawing.Point(179, 538);
+            this.btn_load.Name = "btn_load";
+            this.btn_load.Size = new System.Drawing.Size(87, 23);
+            this.btn_load.TabIndex = 1;
+            this.btn_load.Text = "load";
+            this.btn_load.UseVisualStyleBackColor = true;
+            this.btn_load.Click += new System.EventHandler(this.btn_load_Click);
             // 
             // save_emails
             // 
@@ -101,6 +101,7 @@
             this.Name = "save_emails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Emails";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.save_emails_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

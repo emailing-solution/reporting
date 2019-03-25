@@ -15,7 +15,8 @@ namespace reporting
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ApplicationExit += new EventHandler(appexit);
             //AppDomain.CurrentDomain.ProcessExit += new EventHandler(appexit);
-            Application.Run(new Menu());
+
+            Application.Run(new Report());
             //
         }
 

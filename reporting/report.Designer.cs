@@ -29,65 +29,46 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Report));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Btn_spam_gmail = new System.Windows.Forms.Button();
             this.txt_emails = new System.Windows.Forms.TextBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Btn_inbox_gmail = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txt_log = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.edit_emails = new System.Windows.Forms.LinkLabel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.check_ckeckallNotSpam = new System.Windows.Forms.CheckBox();
-            this.check_checkNotSpam = new System.Windows.Forms.CheckBox();
-            this.checkbox_readNotSpam = new System.Windows.Forms.CheckBox();
-            this.Btn_yahoo_action = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.group_spam_yahoo = new System.Windows.Forms.GroupBox();
-            this.group_inbox_yahoo = new System.Windows.Forms.GroupBox();
-            this.open_star_archive = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.DELETE = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.open_star_reply_archive = new System.Windows.Forms.CheckBox();
-            this.open_archive = new System.Windows.Forms.CheckBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.txt_subject = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Btn_yahoo_action = new System.Windows.Forms.Button();
+            this.txt_thread = new System.Windows.Forms.TextBox();
+            this.group_inbox_yahoo = new System.Windows.Forms.GroupBox();
+            this.star_click = new System.Windows.Forms.CheckBox();
+            this.body_click = new System.Windows.Forms.CheckBox();
+            this.select_all_archive = new System.Windows.Forms.RadioButton();
+            this.open = new System.Windows.Forms.RadioButton();
+            this.select_archive = new System.Windows.Forms.RadioButton();
+            this.random_actions = new System.Windows.Forms.RadioButton();
+            this.open_reply = new System.Windows.Forms.RadioButton();
+            this.open_reply_archive = new System.Windows.Forms.RadioButton();
+            this.open_archive = new System.Windows.Forms.RadioButton();
+            this.group_spam_yahoo = new System.Windows.Forms.GroupBox();
+            this.ckeckall_not_spam = new System.Windows.Forms.RadioButton();
+            this.check_not_spam = new System.Windows.Forms.RadioButton();
+            this.read_not_spam = new System.Windows.Forms.RadioButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox5.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.groupBox6.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.group_spam_yahoo.SuspendLayout();
+            this.DELETE.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.group_inbox_yahoo.SuspendLayout();
+            this.group_spam_yahoo.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.Btn_spam_gmail);
-            this.groupBox1.Location = new System.Drawing.Point(9, 74);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(418, 61);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Spam Action";
-            // 
-            // Btn_spam_gmail
-            // 
-            this.Btn_spam_gmail.Location = new System.Drawing.Point(337, 19);
-            this.Btn_spam_gmail.Name = "Btn_spam_gmail";
-            this.Btn_spam_gmail.Size = new System.Drawing.Size(75, 23);
-            this.Btn_spam_gmail.TabIndex = 0;
-            this.Btn_spam_gmail.Text = "GO";
-            this.Btn_spam_gmail.UseVisualStyleBackColor = true;
             // 
             // txt_emails
             // 
@@ -96,275 +77,344 @@
             this.txt_emails.Name = "txt_emails";
             this.txt_emails.ReadOnly = true;
             this.txt_emails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_emails.Size = new System.Drawing.Size(522, 216);
-            this.txt_emails.TabIndex = 2;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.Btn_inbox_gmail);
-            this.groupBox2.Location = new System.Drawing.Point(432, 74);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(418, 61);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Inbox Action";
-            // 
-            // Btn_inbox_gmail
-            // 
-            this.Btn_inbox_gmail.Location = new System.Drawing.Point(337, 19);
-            this.Btn_inbox_gmail.Name = "Btn_inbox_gmail";
-            this.Btn_inbox_gmail.Size = new System.Drawing.Size(75, 23);
-            this.Btn_inbox_gmail.TabIndex = 0;
-            this.Btn_inbox_gmail.Text = "GO";
-            this.Btn_inbox_gmail.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Location = new System.Drawing.Point(9, 20);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(732, 48);
-            this.groupBox3.TabIndex = 5;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Subject";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(13, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(713, 20);
-            this.textBox1.TabIndex = 0;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.txt_log);
-            this.groupBox4.Location = new System.Drawing.Point(558, 12);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(321, 241);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Logs";
-            // 
-            // txt_log
-            // 
-            this.txt_log.Location = new System.Drawing.Point(6, 19);
-            this.txt_log.Multiline = true;
-            this.txt_log.Name = "txt_log";
-            this.txt_log.ReadOnly = true;
-            this.txt_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_log.Size = new System.Drawing.Size(309, 214);
-            this.txt_log.TabIndex = 0;
+            this.txt_emails.Size = new System.Drawing.Size(853, 216);
+            this.txt_emails.TabIndex = 0;
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.edit_emails);
             this.groupBox5.Controls.Add(this.txt_emails);
             this.groupBox5.Location = new System.Drawing.Point(12, 12);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(534, 241);
-            this.groupBox5.TabIndex = 7;
+            this.groupBox5.Size = new System.Drawing.Size(865, 254);
+            this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Emails";
             // 
+            // edit_emails
+            // 
+            this.edit_emails.AutoSize = true;
+            this.edit_emails.LinkColor = System.Drawing.Color.Black;
+            this.edit_emails.Location = new System.Drawing.Point(6, 235);
+            this.edit_emails.Name = "edit_emails";
+            this.edit_emails.Size = new System.Drawing.Size(58, 13);
+            this.edit_emails.TabIndex = 1;
+            this.edit_emails.TabStop = true;
+            this.edit_emails.Text = "Edit Emails";
+            this.edit_emails.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.edit_emails_LinkClicked);
+            // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 259);
+            this.tabControl1.Location = new System.Drawing.Point(14, 272);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(867, 220);
-            this.tabControl1.TabIndex = 8;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.groupBox6);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(859, 194);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "GMAIL ACTION";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.textBox3);
-            this.groupBox6.Location = new System.Drawing.Point(747, 20);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(103, 48);
-            this.groupBox6.TabIndex = 6;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Threads";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(6, 19);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(89, 20);
-            this.textBox3.TabIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(867, 139);
+            this.tabControl1.TabIndex = 2;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.button1);
+            this.tabPage2.Controls.Add(this.DELETE);
+            this.tabPage2.Controls.Add(this.groupBox7);
             this.tabPage2.Controls.Add(this.group_inbox_yahoo);
-            this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.group_spam_yahoo);
-            this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Controls.Add(this.Btn_yahoo_action);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(859, 194);
+            this.tabPage2.Size = new System.Drawing.Size(859, 113);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "YAHOO ACTION";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // DELETE
             // 
-            this.textBox4.Location = new System.Drawing.Point(630, 26);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(48, 20);
-            this.textBox4.TabIndex = 0;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.DELETE.Controls.Add(this.checkBox2);
+            this.DELETE.Controls.Add(this.checkBox1);
+            this.DELETE.Controls.Add(this.button2);
+            this.DELETE.Enabled = false;
+            this.DELETE.Location = new System.Drawing.Point(560, 6);
+            this.DELETE.Name = "DELETE";
+            this.DELETE.Size = new System.Drawing.Size(93, 100);
+            this.DELETE.TabIndex = 0;
+            this.DELETE.TabStop = false;
+            this.DELETE.Text = "DELETE";
             // 
-            // check_ckeckallNotSpam
+            // checkBox2
             // 
-            this.check_ckeckallNotSpam.AutoSize = true;
-            this.check_ckeckallNotSpam.Location = new System.Drawing.Point(6, 65);
-            this.check_ckeckallNotSpam.Name = "check_ckeckallNotSpam";
-            this.check_ckeckallNotSpam.Size = new System.Drawing.Size(117, 17);
-            this.check_ckeckallNotSpam.TabIndex = 5;
-            this.check_ckeckallNotSpam.Text = "CheckAll/NotSpam";
-            this.check_ckeckallNotSpam.UseVisualStyleBackColor = true;
-            this.check_ckeckallNotSpam.CheckedChanged += new System.EventHandler(this.check_ckeckallNotSpam_CheckedChanged);
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(17, 25);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(59, 17);
+            this.checkBox2.TabIndex = 0;
+            this.checkBox2.Text = "INBOX";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // check_checkNotSpam
+            // checkBox1
             // 
-            this.check_checkNotSpam.AutoSize = true;
-            this.check_checkNotSpam.Location = new System.Drawing.Point(6, 42);
-            this.check_checkNotSpam.Name = "check_checkNotSpam";
-            this.check_checkNotSpam.Size = new System.Drawing.Size(106, 17);
-            this.check_checkNotSpam.TabIndex = 4;
-            this.check_checkNotSpam.Text = "Check/NotSpam";
-            this.check_checkNotSpam.UseVisualStyleBackColor = true;
-            this.check_checkNotSpam.CheckedChanged += new System.EventHandler(this.check_checkNotSpam_CheckedChanged);
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(17, 48);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(56, 17);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "SPAM";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // checkbox_readNotSpam
+            // button2
             // 
-            this.checkbox_readNotSpam.AutoSize = true;
-            this.checkbox_readNotSpam.Location = new System.Drawing.Point(6, 19);
-            this.checkbox_readNotSpam.Name = "checkbox_readNotSpam";
-            this.checkbox_readNotSpam.Size = new System.Drawing.Size(101, 17);
-            this.checkbox_readNotSpam.TabIndex = 3;
-            this.checkbox_readNotSpam.Text = "Read/NotSpam";
-            this.checkbox_readNotSpam.UseVisualStyleBackColor = true;
-            this.checkbox_readNotSpam.CheckedChanged += new System.EventHandler(this.checkbox_readNotSpam_CheckedChanged);
+            this.button2.Enabled = false;
+            this.button2.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.button2.Location = new System.Drawing.Point(6, 70);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(81, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "DELETE";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // Btn_yahoo_action
+            // groupBox7
             // 
-            this.Btn_yahoo_action.Location = new System.Drawing.Point(684, 25);
-            this.Btn_yahoo_action.Name = "Btn_yahoo_action";
-            this.Btn_yahoo_action.Size = new System.Drawing.Size(75, 21);
-            this.Btn_yahoo_action.TabIndex = 0;
-            this.Btn_yahoo_action.Text = "GO";
-            this.Btn_yahoo_action.UseVisualStyleBackColor = true;
-            this.Btn_yahoo_action.Click += new System.EventHandler(this.Btn_yahoo_action_Click);
+            this.groupBox7.Controls.Add(this.txt_subject);
+            this.groupBox7.Controls.Add(this.label2);
+            this.groupBox7.Controls.Add(this.label1);
+            this.groupBox7.Controls.Add(this.Btn_yahoo_action);
+            this.groupBox7.Controls.Add(this.txt_thread);
+            this.groupBox7.Location = new System.Drawing.Point(659, 6);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(194, 100);
+            this.groupBox7.TabIndex = 1;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "ACTIONS";
+            // 
+            // txt_subject
+            // 
+            this.txt_subject.Location = new System.Drawing.Point(73, 20);
+            this.txt_subject.Name = "txt_subject";
+            this.txt_subject.Size = new System.Drawing.Size(108, 20);
+            this.txt_subject.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "SUBJECT :";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(572, 30);
+            this.label1.Location = new System.Drawing.Point(15, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 6;
             this.label1.Text = "Threads :";
             // 
-            // group_spam_yahoo
+            // Btn_yahoo_action
             // 
-            this.group_spam_yahoo.Controls.Add(this.checkbox_readNotSpam);
-            this.group_spam_yahoo.Controls.Add(this.check_checkNotSpam);
-            this.group_spam_yahoo.Controls.Add(this.check_ckeckallNotSpam);
-            this.group_spam_yahoo.Location = new System.Drawing.Point(6, 6);
-            this.group_spam_yahoo.Name = "group_spam_yahoo";
-            this.group_spam_yahoo.Size = new System.Drawing.Size(153, 100);
-            this.group_spam_yahoo.TabIndex = 7;
-            this.group_spam_yahoo.TabStop = false;
-            this.group_spam_yahoo.Text = "SPAM ACTION";
+            this.Btn_yahoo_action.Location = new System.Drawing.Point(73, 72);
+            this.Btn_yahoo_action.Name = "Btn_yahoo_action";
+            this.Btn_yahoo_action.Size = new System.Drawing.Size(108, 21);
+            this.Btn_yahoo_action.TabIndex = 2;
+            this.Btn_yahoo_action.Text = "GO";
+            this.Btn_yahoo_action.UseVisualStyleBackColor = true;
+            this.Btn_yahoo_action.Click += new System.EventHandler(this.Btn_yahoo_action_Click);
+            // 
+            // txt_thread
+            // 
+            this.txt_thread.Location = new System.Drawing.Point(73, 46);
+            this.txt_thread.Name = "txt_thread";
+            this.txt_thread.Size = new System.Drawing.Size(108, 20);
+            this.txt_thread.TabIndex = 1;
+            this.txt_thread.Text = "1";
+            this.txt_thread.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_thread_KeyPress);
             // 
             // group_inbox_yahoo
             // 
-            this.group_inbox_yahoo.Controls.Add(this.open_star_reply_archive);
+            this.group_inbox_yahoo.Controls.Add(this.star_click);
+            this.group_inbox_yahoo.Controls.Add(this.body_click);
+            this.group_inbox_yahoo.Controls.Add(this.select_all_archive);
+            this.group_inbox_yahoo.Controls.Add(this.open);
+            this.group_inbox_yahoo.Controls.Add(this.select_archive);
+            this.group_inbox_yahoo.Controls.Add(this.random_actions);
+            this.group_inbox_yahoo.Controls.Add(this.open_reply);
+            this.group_inbox_yahoo.Controls.Add(this.open_reply_archive);
             this.group_inbox_yahoo.Controls.Add(this.open_archive);
-            this.group_inbox_yahoo.Controls.Add(this.open_star_archive);
             this.group_inbox_yahoo.Location = new System.Drawing.Point(165, 6);
             this.group_inbox_yahoo.Name = "group_inbox_yahoo";
-            this.group_inbox_yahoo.Size = new System.Drawing.Size(359, 100);
-            this.group_inbox_yahoo.TabIndex = 8;
+            this.group_inbox_yahoo.Size = new System.Drawing.Size(389, 100);
+            this.group_inbox_yahoo.TabIndex = 0;
             this.group_inbox_yahoo.TabStop = false;
             this.group_inbox_yahoo.Text = "INBOX ACTION";
             // 
-            // open_star_archive
+            // star_click
             // 
-            this.open_star_archive.AutoSize = true;
-            this.open_star_archive.Location = new System.Drawing.Point(6, 42);
-            this.open_star_archive.Name = "open_star_archive";
-            this.open_star_archive.Size = new System.Drawing.Size(117, 17);
-            this.open_star_archive.TabIndex = 0;
-            this.open_star_archive.Text = "Open/Star/Archive";
-            this.open_star_archive.UseVisualStyleBackColor = true;
+            this.star_click.AutoSize = true;
+            this.star_click.Location = new System.Drawing.Point(273, 51);
+            this.star_click.Name = "star_click";
+            this.star_click.Size = new System.Drawing.Size(55, 17);
+            this.star_click.TabIndex = 7;
+            this.star_click.Text = "STAR";
+            this.star_click.UseVisualStyleBackColor = true;
+            this.star_click.CheckedChanged += new System.EventHandler(this.star_click_CheckedChanged);
             // 
-            // button1
+            // body_click
             // 
-            this.button1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button1.Location = new System.Drawing.Point(6, 165);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "DELETE SPAM";
-            this.button1.UseVisualStyleBackColor = true;
+            this.body_click.AutoSize = true;
+            this.body_click.Location = new System.Drawing.Point(273, 70);
+            this.body_click.Name = "body_click";
+            this.body_click.Size = new System.Drawing.Size(116, 17);
+            this.body_click.TabIndex = 8;
+            this.body_click.Text = "CLICK BODY LINK";
+            this.body_click.UseVisualStyleBackColor = true;
+            this.body_click.CheckedChanged += new System.EventHandler(this.body_click_CheckedChanged);
             // 
-            // button2
+            // select_all_archive
             // 
-            this.button2.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button2.Location = new System.Drawing.Point(6, 136);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 23);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "DELETE INBOX";
-            this.button2.UseVisualStyleBackColor = true;
+            this.select_all_archive.AutoSize = true;
+            this.select_all_archive.Location = new System.Drawing.Point(144, 48);
+            this.select_all_archive.Name = "select_all_archive";
+            this.select_all_archive.Size = new System.Drawing.Size(107, 17);
+            this.select_all_archive.TabIndex = 4;
+            this.select_all_archive.Text = "SelectAll/Archive";
+            this.select_all_archive.UseVisualStyleBackColor = true;
+            this.select_all_archive.CheckedChanged += new System.EventHandler(this.select_all_archive_CheckedChanged);
             // 
-            // open_star_reply_archive
+            // open
             // 
-            this.open_star_reply_archive.AutoSize = true;
-            this.open_star_reply_archive.Location = new System.Drawing.Point(5, 65);
-            this.open_star_reply_archive.Name = "open_star_reply_archive";
-            this.open_star_reply_archive.Size = new System.Drawing.Size(149, 17);
-            this.open_star_reply_archive.TabIndex = 0;
-            this.open_star_reply_archive.Text = "Open/Star/Reply/Archive";
-            this.open_star_reply_archive.UseVisualStyleBackColor = true;
+            this.open.AutoSize = true;
+            this.open.Location = new System.Drawing.Point(273, 28);
+            this.open.Name = "open";
+            this.open.Size = new System.Drawing.Size(65, 17);
+            this.open.TabIndex = 6;
+            this.open.Text = "Connect";
+            this.open.UseVisualStyleBackColor = true;
+            this.open.CheckedChanged += new System.EventHandler(this.open_CheckedChanged);
+            // 
+            // select_archive
+            // 
+            this.select_archive.AutoSize = true;
+            this.select_archive.Location = new System.Drawing.Point(144, 26);
+            this.select_archive.Name = "select_archive";
+            this.select_archive.Size = new System.Drawing.Size(96, 17);
+            this.select_archive.TabIndex = 3;
+            this.select_archive.Text = "Select/Archive";
+            this.select_archive.UseVisualStyleBackColor = true;
+            this.select_archive.CheckedChanged += new System.EventHandler(this.select_archive_CheckedChanged);
+            // 
+            // random_actions
+            // 
+            this.random_actions.AutoSize = true;
+            this.random_actions.Enabled = false;
+            this.random_actions.Location = new System.Drawing.Point(144, 70);
+            this.random_actions.Name = "random_actions";
+            this.random_actions.Size = new System.Drawing.Size(103, 17);
+            this.random_actions.TabIndex = 5;
+            this.random_actions.Text = "Random Actions";
+            this.random_actions.UseVisualStyleBackColor = true;
+            // 
+            // open_reply
+            // 
+            this.open_reply.AutoSize = true;
+            this.open_reply.Location = new System.Drawing.Point(6, 70);
+            this.open_reply.Name = "open_reply";
+            this.open_reply.Size = new System.Drawing.Size(83, 17);
+            this.open_reply.TabIndex = 2;
+            this.open_reply.Text = "Open/Reply";
+            this.open_reply.UseVisualStyleBackColor = true;
+            // 
+            // open_reply_archive
+            // 
+            this.open_reply_archive.AutoSize = true;
+            this.open_reply_archive.Location = new System.Drawing.Point(6, 48);
+            this.open_reply_archive.Name = "open_reply_archive";
+            this.open_reply_archive.Size = new System.Drawing.Size(124, 17);
+            this.open_reply_archive.TabIndex = 1;
+            this.open_reply_archive.Text = "Open/Reply/Archive";
+            this.open_reply_archive.UseVisualStyleBackColor = true;
             // 
             // open_archive
             // 
             this.open_archive.AutoSize = true;
-            this.open_archive.Location = new System.Drawing.Point(6, 19);
+            this.open_archive.Location = new System.Drawing.Point(6, 26);
             this.open_archive.Name = "open_archive";
-            this.open_archive.Size = new System.Drawing.Size(93, 17);
+            this.open_archive.Size = new System.Drawing.Size(92, 17);
             this.open_archive.TabIndex = 0;
             this.open_archive.Text = "Open/Archive";
             this.open_archive.UseVisualStyleBackColor = true;
+            // 
+            // group_spam_yahoo
+            // 
+            this.group_spam_yahoo.Controls.Add(this.ckeckall_not_spam);
+            this.group_spam_yahoo.Controls.Add(this.check_not_spam);
+            this.group_spam_yahoo.Controls.Add(this.read_not_spam);
+            this.group_spam_yahoo.Location = new System.Drawing.Point(6, 6);
+            this.group_spam_yahoo.Name = "group_spam_yahoo";
+            this.group_spam_yahoo.Size = new System.Drawing.Size(153, 100);
+            this.group_spam_yahoo.TabIndex = 0;
+            this.group_spam_yahoo.TabStop = false;
+            this.group_spam_yahoo.Text = "SPAM ACTION";
+            // 
+            // ckeckall_not_spam
+            // 
+            this.ckeckall_not_spam.AutoSize = true;
+            this.ckeckall_not_spam.Location = new System.Drawing.Point(6, 72);
+            this.ckeckall_not_spam.Name = "ckeckall_not_spam";
+            this.ckeckall_not_spam.Size = new System.Drawing.Size(116, 17);
+            this.ckeckall_not_spam.TabIndex = 2;
+            this.ckeckall_not_spam.TabStop = true;
+            this.ckeckall_not_spam.Text = "CheckAll/NotSpam";
+            this.ckeckall_not_spam.UseVisualStyleBackColor = true;
+            // 
+            // check_not_spam
+            // 
+            this.check_not_spam.AutoSize = true;
+            this.check_not_spam.Location = new System.Drawing.Point(6, 49);
+            this.check_not_spam.Name = "check_not_spam";
+            this.check_not_spam.Size = new System.Drawing.Size(105, 17);
+            this.check_not_spam.TabIndex = 1;
+            this.check_not_spam.TabStop = true;
+            this.check_not_spam.Text = "Check/NotSpam";
+            this.check_not_spam.UseVisualStyleBackColor = true;
+            // 
+            // read_not_spam
+            // 
+            this.read_not_spam.AutoSize = true;
+            this.read_not_spam.Location = new System.Drawing.Point(6, 26);
+            this.read_not_spam.Name = "read_not_spam";
+            this.read_not_spam.Size = new System.Drawing.Size(100, 17);
+            this.read_not_spam.TabIndex = 0;
+            this.read_not_spam.TabStop = true;
+            this.read_not_spam.Text = "Read/NotSpam";
+            this.read_not_spam.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 429);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.statusStrip1.Size = new System.Drawing.Size(893, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
+            this.toolStripStatusLabel1.Text = "BY MED AMINE";
             // 
             // Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 490);
+            this.ClientSize = new System.Drawing.Size(893, 451);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -372,57 +422,56 @@
             this.Name = "Report";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Report";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.group_spam_yahoo.ResumeLayout(false);
-            this.group_spam_yahoo.PerformLayout();
+            this.DELETE.ResumeLayout(false);
+            this.DELETE.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.group_inbox_yahoo.ResumeLayout(false);
             this.group_inbox_yahoo.PerformLayout();
+            this.group_spam_yahoo.ResumeLayout(false);
+            this.group_spam_yahoo.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txt_emails;
-        private System.Windows.Forms.Button Btn_spam_gmail;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button Btn_inbox_gmail;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.TextBox txt_log;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txt_thread;
         private System.Windows.Forms.Button Btn_yahoo_action;
-        private System.Windows.Forms.CheckBox check_ckeckallNotSpam;
-        private System.Windows.Forms.CheckBox check_checkNotSpam;
-        private System.Windows.Forms.CheckBox checkbox_readNotSpam;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox group_spam_yahoo;
         private System.Windows.Forms.GroupBox group_inbox_yahoo;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox open_star_archive;
-        private System.Windows.Forms.CheckBox open_star_reply_archive;
-        private System.Windows.Forms.CheckBox open_archive;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox txt_subject;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton open_archive;
+        private System.Windows.Forms.RadioButton random_actions;
+        private System.Windows.Forms.RadioButton open_reply_archive;
+        private System.Windows.Forms.CheckBox body_click;
+        private System.Windows.Forms.CheckBox star_click;
+        private System.Windows.Forms.RadioButton open_reply;
+        private System.Windows.Forms.RadioButton select_archive;
+        private System.Windows.Forms.RadioButton ckeckall_not_spam;
+        private System.Windows.Forms.RadioButton check_not_spam;
+        private System.Windows.Forms.RadioButton read_not_spam;
+        private System.Windows.Forms.RadioButton select_all_archive;
+        private System.Windows.Forms.GroupBox DELETE;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.RadioButton open;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.LinkLabel edit_emails;
     }
 }

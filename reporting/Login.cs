@@ -85,10 +85,10 @@ namespace reporting
                 object result = mysql.scalar("select count(*) from users where username = '"+username+"' and password ='"+password+"'");
                 if (int.Parse(result.ToString()) == 1)
                 {
-                    this.Hide();
-                    Menu m = new Menu();
-                    m.ShowDialog();
-                    this.Close();
+                    Hide();
+                    Report r = new Report();
+                    r.ShowDialog();
+                    Close();
                 }
                 else
                 {
