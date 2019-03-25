@@ -2,7 +2,6 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
-using System.Net;
 
 namespace reporting
 {
@@ -279,6 +278,27 @@ namespace reporting
                         Application.DoEvents();
                     }
                 }
+
+                //case 6 random
+                if(random_actions.Checked)
+                {
+                    //all magic happen here
+                    bool repeat_random(int page, bool star, bool bodyclick, string subject)
+                    {
+                        var status = yahoo.RandomAction(page, star, bodyclick, subject);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_random(page, star, bodyclick, subject);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_random(size, star_click.Checked, body_click.Checked, txt_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
             }
             
         }
@@ -336,12 +356,93 @@ namespace reporting
             {
                 e.Handled = true;
             }
+        }
 
-            // only allow one decimal point
-            //if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            //{
-            //    e.Handled = true;
-            //}
+        private void Delete_emails(string[] accountDetail)
+        {
+            doorman.Wait();
+            data.Yahoo yahoo;
+            if (accountDetail.Length == 2)
+            {
+                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1]);
+            }
+            else if (accountDetail.Length == 4)
+            {
+                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
+            }
+            else
+            {
+                doorman.Release();
+                return;
+            }
+
+            yahoo.Init();
+            yahoo.Connect();
+
+            if (yahoo.CheckIfConnected())
+            {
+                yahoo.Navigate("https://mail.yahoo.com/neo/b/launch");
+
+                if (checkbox_spam_yahoo.Checked)
+                {
+                    yahoo.DeleteSpam();
+                }
+
+                if (checkbox_inbox_yahoo.Checked)
+                {
+                    //all magic happen here
+                    bool repeat_delete_inbox()
+                    {
+                        if (yahoo.DeleteInbox())
+                        {
+                            return yahoo.DeleteInbox();
+                        }
+                        return false;
+                    }
+
+                    while (repeat_delete_inbox())
+                    {
+                        Application.DoEvents();
+                    }
+                    new data.Logger().Info("All inbox email deleted : " + accountDetail[0]);
+                }
+            }
+
+            yahoo.Destroy();
+            doorman.Release();
+        }
+
+        private void Btn_delete_yahoo_Click(object sender, EventArgs e)
+        {
+
+            if (checkbox_inbox_yahoo.Checked || checkbox_spam_yahoo.Checked)
+            {
+                var accounts = txt_emails.Text.Split('\n');
+                if (accounts.Length > 0)
+                {
+                    int sizeThreads = !string.IsNullOrEmpty(txt_thread.Text) ? int.Parse(txt_thread.Text.Trim()) : 1;
+                    doorman = new SemaphoreSlim(sizeThreads);
+
+                    foreach (var account in accounts)
+                    {
+                        string[] accountDetail = account.Split(':');
+
+                        //Création et lancement des threads.
+                        new Thread(() =>
+                        {
+                            Delete_emails(accountDetail);
+
+                        }).Start();
+
+                        //On laisse passer 500ms entre les création de thread.
+                        Thread.Sleep(500);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Add some accounts", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

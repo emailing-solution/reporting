@@ -35,9 +35,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.DELETE = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.checkbox_inbox_yahoo = new System.Windows.Forms.CheckBox();
+            this.checkbox_spam_yahoo = new System.Windows.Forms.CheckBox();
+            this.Btn_delete_yahoo = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.txt_subject = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -128,10 +128,9 @@
             // 
             // DELETE
             // 
-            this.DELETE.Controls.Add(this.checkBox2);
-            this.DELETE.Controls.Add(this.checkBox1);
-            this.DELETE.Controls.Add(this.button2);
-            this.DELETE.Enabled = false;
+            this.DELETE.Controls.Add(this.checkbox_inbox_yahoo);
+            this.DELETE.Controls.Add(this.checkbox_spam_yahoo);
+            this.DELETE.Controls.Add(this.Btn_delete_yahoo);
             this.DELETE.Location = new System.Drawing.Point(560, 6);
             this.DELETE.Name = "DELETE";
             this.DELETE.Size = new System.Drawing.Size(93, 100);
@@ -139,38 +138,36 @@
             this.DELETE.TabStop = false;
             this.DELETE.Text = "DELETE";
             // 
-            // checkBox2
+            // checkbox_inbox_yahoo
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(17, 25);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(59, 17);
-            this.checkBox2.TabIndex = 0;
-            this.checkBox2.Text = "INBOX";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkbox_inbox_yahoo.AutoSize = true;
+            this.checkbox_inbox_yahoo.Location = new System.Drawing.Point(17, 25);
+            this.checkbox_inbox_yahoo.Name = "checkbox_inbox_yahoo";
+            this.checkbox_inbox_yahoo.Size = new System.Drawing.Size(59, 17);
+            this.checkbox_inbox_yahoo.TabIndex = 0;
+            this.checkbox_inbox_yahoo.Text = "INBOX";
+            this.checkbox_inbox_yahoo.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkbox_spam_yahoo
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(17, 48);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(56, 17);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "SPAM";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkbox_spam_yahoo.AutoSize = true;
+            this.checkbox_spam_yahoo.Location = new System.Drawing.Point(17, 48);
+            this.checkbox_spam_yahoo.Name = "checkbox_spam_yahoo";
+            this.checkbox_spam_yahoo.Size = new System.Drawing.Size(56, 17);
+            this.checkbox_spam_yahoo.TabIndex = 1;
+            this.checkbox_spam_yahoo.Text = "SPAM";
+            this.checkbox_spam_yahoo.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // Btn_delete_yahoo
             // 
-            this.button2.Enabled = false;
-            this.button2.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button2.Location = new System.Drawing.Point(6, 70);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "DELETE";
-            this.button2.UseVisualStyleBackColor = true;
+            this.Btn_delete_yahoo.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.Btn_delete_yahoo.Location = new System.Drawing.Point(6, 70);
+            this.Btn_delete_yahoo.Name = "Btn_delete_yahoo";
+            this.Btn_delete_yahoo.Size = new System.Drawing.Size(81, 23);
+            this.Btn_delete_yahoo.TabIndex = 2;
+            this.Btn_delete_yahoo.Text = "DELETE";
+            this.Btn_delete_yahoo.UseVisualStyleBackColor = true;
+            this.Btn_delete_yahoo.Click += new System.EventHandler(this.Btn_delete_yahoo_Click);
             // 
             // groupBox7
             // 
@@ -306,7 +303,6 @@
             // random_actions
             // 
             this.random_actions.AutoSize = true;
-            this.random_actions.Enabled = false;
             this.random_actions.Location = new System.Drawing.Point(144, 70);
             this.random_actions.Name = "random_actions";
             this.random_actions.Size = new System.Drawing.Size(103, 17);
@@ -404,8 +400,8 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
-            this.toolStripStatusLabel1.Text = "BY MED AMINE";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(145, 17);
+            this.toolStripStatusLabel1.Text = "BY MED AMINE EL ATTABI";
             // 
             // Report
             // 
@@ -451,7 +447,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox group_spam_yahoo;
         private System.Windows.Forms.GroupBox group_inbox_yahoo;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Btn_delete_yahoo;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TextBox txt_subject;
         private System.Windows.Forms.Label label2;
@@ -467,8 +463,8 @@
         private System.Windows.Forms.RadioButton read_not_spam;
         private System.Windows.Forms.RadioButton select_all_archive;
         private System.Windows.Forms.GroupBox DELETE;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkbox_inbox_yahoo;
+        private System.Windows.Forms.CheckBox checkbox_spam_yahoo;
         private System.Windows.Forms.RadioButton open;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;

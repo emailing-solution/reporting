@@ -16,13 +16,14 @@ namespace reporting
             Application.ApplicationExit += new EventHandler(appexit);
             //AppDomain.CurrentDomain.ProcessExit += new EventHandler(appexit);
 
-            Application.Run(new Report());
+            Application.Run(new Login());
             //
         }
 
         static void appexit(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("CMD.exe", "/C taskkill /F /IM chromedriver.exe /T");
+            Environment.Exit(Environment.ExitCode);
         }
     }
 }

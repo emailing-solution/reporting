@@ -7,10 +7,10 @@ namespace reporting.data
     class mysql
     {
         private MySqlConnection connection;
-        private string server = "localhost";
-        private string database = "reporting";
-        private string username = "root";
-        private string password = "";
+        private string server = "93.119.178.245";
+        private string database = "db";
+        private string username = "admin";
+        private string password = "admin";
 
         //Constructor
         public mysql()
@@ -66,17 +66,19 @@ namespace reporting.data
         }
 
         //Select statement
-        public DataSet Select(string sql)
+        public IDataReader Select(string sql)
         {
-            var ds = new DataSet();
+            var ds = new DataTable();
             if (OpenConnection() == true)
             {
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
-                var adapter = new MySqlDataAdapter(cmd);
-                adapter.Fill(ds);
-                CloseConnection();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                var dt = new DataTable();
+                dt.Load(reader);
+                return dt.CreateDataReader();
+                
             }
-            return ds;
+            return null;
         }
 
         public object scalar(string sql)
