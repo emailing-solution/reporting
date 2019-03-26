@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using reporting.data;
 
 namespace reporting
 {
@@ -22,12 +23,11 @@ namespace reporting
             }
         }
 
-        private bool Check_spam_checked()
+        private bool Check_yahoo_spam_checked()
         {
             foreach (Control item in group_spam_yahoo.Controls)
             {
-                RadioButton c = item as RadioButton;
-                if (c != null && c.Checked)
+                if (item is RadioButton c && c.Checked)
                 {
                     return true;
                 }
@@ -35,12 +35,35 @@ namespace reporting
             return false;
         }
 
-        private bool Check_inbox_checked()
+        private bool Check_yahoo_inbox_checked()
         {
             foreach (Control item in group_inbox_yahoo.Controls)
             {
-                RadioButton c = item as RadioButton;
-                if (c != null && c.Checked)
+                if (item is RadioButton c && c.Checked)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool Check_gmail_spam_checked()
+        {
+            foreach (Control item in group_spam_gmail.Controls)
+            {
+                if (item is RadioButton c && c.Checked)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool Check_gmail_inbox_checked()
+        {
+            foreach (Control item in group_inbox_gmail.Controls)
+            {
+                if (item is RadioButton c && c.Checked)
                 {
                     return true;
                 }
@@ -51,7 +74,7 @@ namespace reporting
         private void Btn_yahoo_action_Click(object sender, EventArgs e)
         {
 
-            if (!Check_spam_checked() && !Check_inbox_checked())
+            if (!Check_yahoo_spam_checked() && !Check_yahoo_inbox_checked())
             {
                 MessageBox.Show("Please select an action to do", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -90,14 +113,14 @@ namespace reporting
         private void ActionYahoo(string[] accountDetail)
         {
             Doorman.Wait();
-            data.Yahoo yahoo;
+            Yahoo yahoo;
             if (accountDetail.Length == 2)
             {
-                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1]);
+                yahoo = new Yahoo(accountDetail[0], accountDetail[1]);
             }
             else if (accountDetail.Length == 4)
             {
-                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
+                yahoo = new Yahoo(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
             }
             else
             {
@@ -127,13 +150,13 @@ namespace reporting
                 yahoo.Navigate("https://mail.yahoo.com/neo/b/launch");
 
                 //to spam action
-                if (Check_spam_checked())
+                if (Check_yahoo_spam_checked())
                 {
                     SpamYahoo(yahoo);
                 }
 
                 //to inbox action()
-                if (Check_inbox_checked())
+                if (Check_yahoo_inbox_checked())
                 {
                     InboxYahoo(yahoo);
                 }
@@ -144,10 +167,8 @@ namespace reporting
 
         }
 
-        private void SpamYahoo(data.Yahoo yahoo)
+        private void SpamYahoo(Yahoo yahoo)
         {
-            
-
             if (yahoo.GoToSpamFolder())
             {
                 //case 1 
@@ -171,7 +192,7 @@ namespace reporting
             }
         }
 
-        private void InboxYahoo(data.Yahoo yahoo)
+        private void InboxYahoo(Yahoo yahoo)
         {
             int size = 0;
             if (yahoo.GotoInboxFolder())
@@ -361,14 +382,14 @@ namespace reporting
         private void Delete_emails(string[] accountDetail)
         {
             Doorman.Wait();
-            data.Yahoo yahoo;
+            Yahoo yahoo;
             if (accountDetail.Length == 2)
             {
-                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1]);
+                yahoo = new Yahoo(accountDetail[0], accountDetail[1]);
             }
             else if (accountDetail.Length == 4)
             {
-                yahoo = new data.Yahoo(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
+                yahoo = new Yahoo(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
             }
             else
             {
@@ -404,7 +425,7 @@ namespace reporting
                     {
                         Application.DoEvents();
                     }
-                    new data.Logger().Info("All inbox email deleted : " + accountDetail[0]);
+                    new Logger().Info("All inbox email deleted : " + accountDetail[0]);
                 }
             }
 
@@ -456,6 +477,173 @@ namespace reporting
             if (File.Exists("data.txt") && new FileInfo("data.txt").Length > 0)
             {
                 txt_emails.Text = File.ReadAllText("data.txt");
+            }
+        }
+
+        private void Btn_gmail_action_Click(object sender, EventArgs e)
+        {
+            Gmail g = new Gmail("solworkgm","*Mohamed");
+            g.Init();
+            g.Connect();
+            if(g.CheckIfConnected())
+            {
+               if(g.OldGmail())
+               {
+                    if(Check_gmail_spam_checked())
+                    {
+                        SpamGmail(g);
+                    }
+
+                    if(Check_gmail_inbox_checked())
+                    {
+                        InboxGmail(g);
+                    }
+               }
+            }
+            
+        }
+        
+        private void SpamGmail(Gmail gmail)
+        {
+            if(gmail.GotoSpamFolder())
+            {
+                //case 1 Read ana mark not spam
+                if(read_not_spam_gmail.Checked)
+                {
+                    while (gmail.ReadNotSpam()) { Application.DoEvents(); }
+                }
+                //case 2 check and mark as not spam
+                else if(check_not_spam_gmail.Checked)
+                {
+                    while (gmail.CheckNotSpam()) { Application.DoEvents(); }
+                }
+                //case 3 check all and  mark not spam
+                else if(checkall_not_spam_gmail.Checked)
+                {
+                    while (gmail.CheckAllNotSpam()) { Application.DoEvents(); }
+                }
+            }
+        }
+
+        private void InboxGmail(Gmail gmail)
+        {
+            int size = 0;
+            if (gmail.GoToInboxFolder())
+            {
+                //case 1  open and archive;
+                if(open_archive_gmail.Checked)
+                {
+                    //all magic happen here
+                    bool repeat_arhive_gmail(int page, bool star, bool click, string search)
+                    {
+                        var status = gmail.OpenArchive(page, star, click, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_arhive_gmail(page, star, click, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_arhive_gmail(size, star_click_gmail.Checked, body_click_gmail.Checked, txt_gmail_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+                else if (open_reply_archive_gmail.Checked)
+                {
+                    bool repeat_open_reply_arhive_gmail(int page, bool star, bool click, string search)
+                    {
+                        var status = gmail.OpenReplyArchive(page, star, click, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_open_reply_arhive_gmail(page, star, click, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_open_reply_arhive_gmail(size, star_click_gmail.Checked, body_click_gmail.Checked, txt_gmail_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+                else if (open_reply_gmail.Checked)
+                {
+                    bool repeat_open_reply_gmail(int page, bool star, bool click, string search)
+                    {
+                        var status = gmail.OpenReply(page, star, click, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_open_reply_gmail(page, star, click, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_open_reply_gmail(size, star_click_gmail.Checked, body_click_gmail.Checked, txt_gmail_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+                else if (select_archive_gmail.Checked)
+                {
+                    bool repeat_select_archive_gmail(int page, bool star, string search)
+                    {
+                        var status = gmail.SelectArchive(page, star, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_select_archive_gmail(page, star, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_select_archive_gmail(size, star_click_gmail.Checked, txt_gmail_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+                else if (selectall_archive_gmail.Checked)
+                {
+                    bool repeat_selectall_archive_gmail(int page, bool star, string search)
+                    {
+                        var status = gmail.SelectAllArchive(page, star, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_selectall_archive_gmail(page, star, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_selectall_archive_gmail(size, star_click_gmail.Checked, txt_gmail_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+                else if(random_action_gmail.Checked)
+                {
+                    bool repeat_random_gmail(int page, bool star, bool clickbody, string search)
+                    {
+                        var status = gmail.RandomAction(page, star, clickbody, search);
+                        if ((bool)status[0])
+                        {
+                            page = (int)status[1];
+                            return repeat_random_gmail(page, star, clickbody, search);
+                        }
+                        return false;
+                    }
+
+                    while (repeat_random_gmail(size, star_click_gmail.Checked, body_click_gmail.Checked, txt_gmail_subject.Text))
+                    {
+                        Application.DoEvents();
+                    }
+                }
+                else if(connect_gmail.Checked)
+                {
+
+                }
             }
         }
     }

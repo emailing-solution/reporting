@@ -126,8 +126,15 @@ namespace reporting.data
 
         public void Navigate(string url)
         {
-            Driver.Url = url;
-            Driver.Navigate();
+            try
+            {
+                Driver.Url = url;
+                Driver.Navigate();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
         }
 
         public bool CheckIfClosed()
