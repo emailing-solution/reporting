@@ -7,14 +7,15 @@ namespace reporting
 {
     public partial class Report : Form
     {
-
         //Déclaration du SemaphoreSlim qui prendra en paramètre le nombre de places disponibles.
         public SemaphoreSlim Doorman { get; set ; }
         public Random Random { get; set; }
+        public static Report _form { get; set; }
 
         public Report()
         {
             InitializeComponent();
+            _form = this;
             if (File.Exists("data.txt") && new FileInfo("data.txt").Length > 0)
             {
                 txt_emails.Text = File.ReadAllText("data.txt");
@@ -447,6 +448,15 @@ namespace reporting
         private void Report_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        public void UpdateEmails()
+        {
+            txt_emails.Text = "";
+            if (File.Exists("data.txt") && new FileInfo("data.txt").Length > 0)
+            {
+                txt_emails.Text = File.ReadAllText("data.txt");
+            }
         }
     }
 }

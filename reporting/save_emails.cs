@@ -30,15 +30,14 @@ namespace reporting
                 File.WriteAllText("data.txt", txt_emails.Text.Trim());
                 MessageBox.Show("Saved", "Emails settings", MessageBoxButtons.OK);
                 txt_emails.Text = string.Empty;
-                
-                
+                 
             }
         }
 
         private void save_emails_FormClosing(object sender, FormClosingEventArgs e)
         {
-           
 
+            Report._form.UpdateEmails();
         }
     }
 }

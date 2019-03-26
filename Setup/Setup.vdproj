@@ -728,7 +728,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Reporting"
         "ProductCode" = "8:{21FE6F70-8422-4103-92CE-C1E12E96A098}"
-        "PackageCode" = "8:{4A124261-B197-44CE-98DE-42124026DB38}"
+        "PackageCode" = "8:{D271CBB7-C1BF-4117-B239-C4C0A2FC963C}"
         "UpgradeCode" = "8:{C5AE7F82-832E-4BCF-B97B-4936C561BD12}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"

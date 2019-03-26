@@ -6,8 +6,6 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Windows.Forms;
 using CryptSharp;
-using System.Data;
-using MySql.Data.MySqlClient;
 
 namespace reporting
 {
@@ -30,6 +28,7 @@ namespace reporting
 
             return address;
         }
+
         public static bool IsNetworkAvailable(long minimumSpeed)
         {
             if (!NetworkInterface.GetIsNetworkAvailable())
@@ -100,14 +99,12 @@ namespace reporting
                 }
                 data.Close();
 
-
-
                 if (Crypter.CheckPassword(password, pass))
                 {
                     Hide();
                     Report r = new Report();
                     r.Show();
-                    Close();
+                    //Close();
                 }
                 else
                 {
