@@ -14,10 +14,10 @@ namespace reporting.data
 {
     class Yahoo
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Proxy { get; set; }
-        public string Port { get; set; }
+        private string Username { get; set; }
+        private string Password { get; set; }
+        private string Proxy { get; set; }
+        private string Port { get; set; }
 
         private IWebDriver Driver { get; set; }
         private ChromeOptions Options { get; set; }

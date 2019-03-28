@@ -82,9 +82,9 @@
             this.open_reply_archive_gmail = new System.Windows.Forms.RadioButton();
             this.open_archive_gmail = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.delete_gmail_inbox = new System.Windows.Forms.CheckBox();
+            this.delete_gmail_spam = new System.Windows.Forms.CheckBox();
+            this.Btn_delete_gmail = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -659,9 +659,9 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.checkBox3);
-            this.groupBox3.Controls.Add(this.checkBox4);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.delete_gmail_inbox);
+            this.groupBox3.Controls.Add(this.delete_gmail_spam);
+            this.groupBox3.Controls.Add(this.Btn_delete_gmail);
             this.groupBox3.Location = new System.Drawing.Point(560, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(93, 100);
@@ -669,35 +669,36 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "DELETE";
             // 
-            // checkBox3
+            // delete_gmail_inbox
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(17, 25);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(59, 17);
-            this.checkBox3.TabIndex = 0;
-            this.checkBox3.Text = "INBOX";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.delete_gmail_inbox.AutoSize = true;
+            this.delete_gmail_inbox.Location = new System.Drawing.Point(17, 25);
+            this.delete_gmail_inbox.Name = "delete_gmail_inbox";
+            this.delete_gmail_inbox.Size = new System.Drawing.Size(59, 17);
+            this.delete_gmail_inbox.TabIndex = 0;
+            this.delete_gmail_inbox.Text = "INBOX";
+            this.delete_gmail_inbox.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // delete_gmail_spam
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(17, 48);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(56, 17);
-            this.checkBox4.TabIndex = 1;
-            this.checkBox4.Text = "SPAM";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.delete_gmail_spam.AutoSize = true;
+            this.delete_gmail_spam.Location = new System.Drawing.Point(17, 48);
+            this.delete_gmail_spam.Name = "delete_gmail_spam";
+            this.delete_gmail_spam.Size = new System.Drawing.Size(56, 17);
+            this.delete_gmail_spam.TabIndex = 1;
+            this.delete_gmail_spam.Text = "SPAM";
+            this.delete_gmail_spam.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // Btn_delete_gmail
             // 
-            this.button1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button1.Location = new System.Drawing.Point(6, 70);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "DELETE";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Btn_delete_gmail.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.Btn_delete_gmail.Location = new System.Drawing.Point(6, 70);
+            this.Btn_delete_gmail.Name = "Btn_delete_gmail";
+            this.Btn_delete_gmail.Size = new System.Drawing.Size(81, 23);
+            this.Btn_delete_gmail.TabIndex = 2;
+            this.Btn_delete_gmail.Text = "DELETE";
+            this.Btn_delete_gmail.UseVisualStyleBackColor = true;
+            this.Btn_delete_gmail.Click += new System.EventHandler(this.Btn_delete_gmail_Click);
             // 
             // Report
             // 
@@ -786,9 +787,9 @@
         private System.Windows.Forms.RadioButton check_not_spam_gmail;
         private System.Windows.Forms.RadioButton read_not_spam_gmail;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox delete_gmail_inbox;
+        private System.Windows.Forms.CheckBox delete_gmail_spam;
+        private System.Windows.Forms.Button Btn_delete_gmail;
         private System.Windows.Forms.GroupBox group_inbox_gmail;
         private System.Windows.Forms.CheckBox star_click_gmail;
         private System.Windows.Forms.CheckBox body_click_gmail;

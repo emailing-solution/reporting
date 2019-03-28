@@ -16,7 +16,7 @@ namespace reporting
             Application.ApplicationExit += new EventHandler(appexit);
             //AppDomain.CurrentDomain.ProcessExit += new EventHandler(appexit);
 
-            Application.Run(new Report());
+            Application.Run(new Login());
             //
         }
 

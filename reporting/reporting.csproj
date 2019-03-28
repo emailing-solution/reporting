@@ -121,6 +121,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="data\gmail.cs" />
+    <Compile Include="data\hotmail.cs" />
     <Compile Include="data\logger.cs" />
     <Compile Include="data\mysql.cs" />
     <Compile Include="data\yahoo.cs" />

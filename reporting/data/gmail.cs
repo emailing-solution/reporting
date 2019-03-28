@@ -14,10 +14,10 @@ namespace reporting.data
 {
     class Gmail
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Proxy { get; set; }
-        public string Port { get; set; }
+        private string Username { get; set; }
+        private string Password { get; set; }
+        private string Proxy { get; set; }
+        private string Port { get; set; }
 
         private IWebDriver Driver { get; set; }
         private ChromeOptions Options { get; set; }
@@ -150,6 +150,19 @@ namespace reporting.data
             {
                 Debug.WriteLine(ex.ToString());
                 return false;
+            }
+        }
+
+        public bool CheckIfClosed()
+        {
+            try
+            {
+                string title = Driver.Title;
+                return false;
+            }
+            catch (Exception)
+            {
+                return true;
             }
         }
 
@@ -980,6 +993,69 @@ namespace reporting.data
             }
         }
         #endregion
+
+        #region delete
+        public bool DeleteSpam()
+        {
+            try
+            {
+                GotoSpamFolder();
+                Wait.Until(ExpectedConditions.ElementExists(By.XPath("/html/body/table[2]/tbody/tr/td[2]/table[1]/tbody/tr/td[2]/form/table[2]/tbody/tr[1]")));
+                IList<IWebElement> tableRows = Driver.FindElements(By.XPath("/html/body/table[2]/tbody/tr/td[2]/table[1]/tbody/tr/td[2]/form/table[2]/tbody/tr"));
+
+                //click in all checkbox of non read emails :)
+                foreach (IWebElement tr in tableRows)
+                {
+                    IList<IWebElement> tds = tr.FindElements(By.TagName("td"));
+                    tds[0].FindElement(By.TagName("input")).Click();
+                    Thread.Sleep(Random.Next(0, 100));
+                }
+
+                //click delete :)
+                Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("input[name=nvp_a_dl]")));
+                Driver.FindElement(By.CssSelector("input[name = nvp_a_dl]")).Click();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteInbox()
+        {
+            try
+            {
+                GoToInboxFolder();
+                Wait.Until(ExpectedConditions.ElementExists(By.XPath("/html/body/table[2]/tbody/tr/td[2]/table[1]/tbody/tr/td[2]/form/table[2]/tbody/tr[1]")));
+                IList<IWebElement> tableRows = Driver.FindElements(By.XPath("/html/body/table[2]/tbody/tr/td[2]/table[1]/tbody/tr/td[2]/form/table[2]/tbody/tr"));
+
+                //click in all checkbox of non read emails :)
+                foreach (IWebElement tr in tableRows)
+                {
+                    IList<IWebElement> tds = tr.FindElements(By.TagName("td"));
+                    tds[0].FindElement(By.TagName("input")).Click();
+                    Thread.Sleep(Random.Next(0, 100));
+                }
+
+                //click delete :)
+                Wait.Until(ExpectedConditions.ElementExists(By.CssSelector("input[name=nvp_a_tr]")));
+                Driver.FindElement(By.CssSelector("input[name = nvp_a_tr]")).Click();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        public void Destroy()
+        {
+            Driver.Close();
+            Driver.Quit();
+        }
 
     }
 }

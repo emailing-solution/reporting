@@ -482,25 +482,89 @@ namespace reporting
 
         private void Btn_gmail_action_Click(object sender, EventArgs e)
         {
-            Gmail g = new Gmail("solworkgm","*Mohamed");
-            g.Init();
-            g.Connect();
-            if(g.CheckIfConnected())
+            if (!Check_gmail_spam_checked() && !Check_gmail_inbox_checked())
             {
-               if(g.OldGmail())
-               {
-                    if(Check_gmail_spam_checked())
-                    {
-                        SpamGmail(g);
-                    }
-
-                    if(Check_gmail_inbox_checked())
-                    {
-                        InboxGmail(g);
-                    }
-               }
+                MessageBox.Show("Please select an action to do", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+            else
+            {
+                var accounts = txt_emails.Text.Split('\n');
+                if (accounts.Length > 0)
+                {
+                    int sizeThreads = !string.IsNullOrEmpty(txt_thread.Text) ? int.Parse(txt_thread.Text.Trim()) : 1;
+                    Doorman = new SemaphoreSlim(sizeThreads);
+
+                    foreach (var account in accounts)
+                    {
+                        string[] accountDetail = account.Split(':');
+                        //Création et lancement des threads.
+
+                        new Thread(() =>
+                        {
+                            ActionGmail(accountDetail);
+
+                        }).Start();
+
+                        //On laisse passer 500ms entre les création de thread.
+                        Thread.Sleep(500);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Add some accounts", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }            
+        }
+
+        private void ActionGmail(string[] accountDetail)
+        {
+            Doorman.Wait();
+            Gmail gmail;
+            if (accountDetail.Length == 2)
+            {
+                gmail = new Gmail(accountDetail[0], accountDetail[1]);
+            }
+            else if (accountDetail.Length == 4)
+            {
+                gmail = new Gmail(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
+            }
+            else
+            {
+                Doorman.Release();
+                return;
+            }
+            gmail.Init();
+            gmail.Connect();
+
+            if (open.Checked)
+            {
+                while (!gmail.CheckIfClosed())
+                {
+                    Thread.Sleep(5000);
+                }
+                Doorman.Release();
+                return;
+            }
+
+            if (gmail.CheckIfConnected())
+            {
+
+                gmail.OldGmail();
+                //to spam action
+                if (Check_gmail_spam_checked())
+                {
+                    SpamGmail(gmail);
+                }
+
+                //to inbox action()
+                if (Check_yahoo_inbox_checked())
+                {
+                    InboxGmail(gmail);
+                }
+
+                gmail.Destroy();
+            }
+            Doorman.Release();
         }
         
         private void SpamGmail(Gmail gmail)
@@ -645,6 +709,100 @@ namespace reporting
 
                 }
             }
+        }
+
+        private void Btn_delete_gmail_Click(object sender, EventArgs e)
+        {
+            if (delete_gmail_inbox.Checked || delete_gmail_spam.Checked)
+            {
+                var accounts = txt_emails.Text.Split('\n');
+                if (accounts.Length > 0)
+                {
+                    int sizeThreads = !string.IsNullOrEmpty(txt_thread.Text) ? int.Parse(txt_thread.Text.Trim()) : 1;
+                    Doorman = new SemaphoreSlim(sizeThreads);
+
+                    foreach (var account in accounts)
+                    {
+                        string[] accountDetail = account.Split(':');
+
+                        //Création et lancement des threads.
+                        new Thread(() =>
+                        {
+                            Delete_emails_gmail(accountDetail);
+
+                        }).Start();
+
+                        //On laisse passer 500ms entre les création de thread.
+                        Thread.Sleep(500);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Add some accounts", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Delete_emails_gmail(string[] accountDetail)
+        {
+            Doorman.Wait();
+            Gmail gmail;
+            if (accountDetail.Length == 2)
+            {
+                gmail = new Gmail(accountDetail[0], accountDetail[1]);
+            }
+            else if (accountDetail.Length == 4)
+            {
+                gmail = new Gmail(accountDetail[0], accountDetail[1], accountDetail[2], accountDetail[3]);
+            }
+            else
+            {
+                Doorman.Release();
+                return;
+            }
+
+            gmail.Init();
+            gmail.Connect();
+            gmail.OldGmail();
+
+            if(delete_gmail_spam.Checked)
+            {
+                bool repeat_delete_spam()
+                {
+                    if (gmail.DeleteSpam())
+                    {
+                        return gmail.DeleteSpam();
+                    }
+                    return false;
+                }
+
+                while (repeat_delete_spam())
+                {
+                    Application.DoEvents();
+                }
+                new Logger().Info("All Spam email deleted : " + accountDetail[0]);
+            }
+
+            if(delete_gmail_inbox.Checked)
+            {
+                bool repeat_delete_inbox()
+                {
+                    if (gmail.DeleteInbox())
+                    {
+                        return gmail.DeleteInbox();
+                    }
+                    return false;
+                }
+
+                while (repeat_delete_inbox())
+                {
+                    Application.DoEvents();
+                }
+                new Logger().Info("All inbox email deleted : " + accountDetail[0]);
+            }
+
+            gmail.Destroy();
+            Doorman.Release();
         }
     }
 }
