@@ -6,6 +6,8 @@
 *.user
 *.userosscache
 *.sln.docstates
+#ignore setup folder
+/setup/*
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

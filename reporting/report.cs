@@ -127,7 +127,13 @@ namespace reporting
                 Doorman.Release();
                 return;
             }
-            yahoo.Init();
+            bool error = yahoo.Init();
+            if(!error)
+            {
+                MessageBox.Show("ERROR INIT", "Error");
+                Doorman.Release();
+                return;
+            }
 
             if (open.Checked)
             {
@@ -533,7 +539,12 @@ namespace reporting
                 Doorman.Release();
                 return;
             }
-            gmail.Init();
+            bool init = gmail.Init();
+            if (!init)
+            {
+                Doorman.Release();
+                return;
+            }
             gmail.Connect();
 
             if (open.Checked)

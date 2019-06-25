@@ -38,7 +38,7 @@ namespace reporting.data
             this.Port = Port;
         }
 
-        public void Init(bool proxy = true, bool adblock = false, bool incognito = true)
+        public bool Init(bool proxy = true, bool adblock = false, bool incognito = true)
         {
             var useragents = new List<string>
             {
@@ -68,10 +68,13 @@ namespace reporting.data
                 //resize window
                 Options.AddArguments("--window-size=" + Random.Next(500, 1500) + "," + Random.Next(800, 1000));
                 Driver = new ChromeDriver(chromeDriverService, Options);
+                return true;
             }
             catch (Exception ex)
             {
+                System.Windows.Forms.MessageBox.Show(ex.Message, "Error");
                 new Logger().Fatal("init error : " + ex.ToString());
+                return false;
             }
         }
 

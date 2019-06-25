@@ -100,7 +100,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C82DA828E5364B699F84346429E84AC7"
+        "MsmKey" = "8:_B2C4B0D0D1414067BBBB518E4637E9E1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -137,49 +137,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6981FF163F8CC46D3171BD35717315E2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_4B1AE7E555803A2AD7C3D9BE20E62285"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6606F2356C94FDB842F91C84AB08BE2D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_69E1A8E7EBA33D5D4C89131BA88C565D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_01D9DDD7CE545D43D294BCB9A0E92B89"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D28C39F4A44174250FA175695BFB35E7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AF2AD254F00EA715250CDD90CEB36A91"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EBD54BBE134D2372A8F1EDA1F16746CB"
+        "OwnerKey" = "8:_B14C3162FEF1F3CC9A0D83496031C984"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -191,7 +149,49 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B14C3162FEF1F3CC9A0D83496031C984"
+        "OwnerKey" = "8:_EBD54BBE134D2372A8F1EDA1F16746CB"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AF2AD254F00EA715250CDD90CEB36A91"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D28C39F4A44174250FA175695BFB35E7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_01D9DDD7CE545D43D294BCB9A0E92B89"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_69E1A8E7EBA33D5D4C89131BA88C565D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6606F2356C94FDB842F91C84AB08BE2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_4B1AE7E555803A2AD7C3D9BE20E62285"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_6981FF163F8CC46D3171BD35717315E2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -251,6 +251,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
     }
@@ -288,11 +296,6 @@
             "AssemblyAsmDisplayName" = "8:MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_01D9DDD7CE545D43D294BCB9A0E92B89"
-                    {
-                    "Name" = "8:MySql.Data.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:MySql.Data.dll"
             "TargetName" = "8:"
@@ -359,11 +362,6 @@
             "AssemblyAsmDisplayName" = "8:WebDriver.Support, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_4B1AE7E555803A2AD7C3D9BE20E62285"
-                    {
-                    "Name" = "8:WebDriver.Support.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WebDriver.Support.dll"
             "TargetName" = "8:"
@@ -390,11 +388,6 @@
             "AssemblyAsmDisplayName" = "8:WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6606F2356C94FDB842F91C84AB08BE2D"
-                    {
-                    "Name" = "8:WebDriver.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:WebDriver.dll"
             "TargetName" = "8:"
@@ -421,11 +414,6 @@
             "AssemblyAsmDisplayName" = "8:Slack.Webhooks, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_6981FF163F8CC46D3171BD35717315E2"
-                    {
-                    "Name" = "8:Slack.Webhooks.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Slack.Webhooks.dll"
             "TargetName" = "8:"
@@ -452,11 +440,6 @@
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_69E1A8E7EBA33D5D4C89131BA88C565D"
-                    {
-                    "Name" = "8:Newtonsoft.Json.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
             "TargetName" = "8:"
@@ -483,11 +466,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_8556477BA35BB38FBA22468686688357"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -514,11 +492,6 @@
             "AssemblyAsmDisplayName" = "8:SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_AF2AD254F00EA715250CDD90CEB36A91"
-                    {
-                    "Name" = "8:SeleniumExtras.WaitHelpers.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:SeleniumExtras.WaitHelpers.dll"
             "TargetName" = "8:"
@@ -545,11 +518,6 @@
             "AssemblyAsmDisplayName" = "8:System.ComponentModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_B14C3162FEF1F3CC9A0D83496031C984"
-                    {
-                    "Name" = "8:System.ComponentModel.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.ComponentModel.dll"
             "TargetName" = "8:"
@@ -569,9 +537,9 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C82DA828E5364B699F84346429E84AC7"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2C4B0D0D1414067BBBB518E4637E9E1"
             {
-            "SourcePath" = "8:..\\..\\..\\..\\Desktop\\chromedriver.exe"
+            "SourcePath" = "8:..\\reporting\\bin\\Debug\\chromedriver.exe"
             "TargetName" = "8:chromedriver.exe"
             "Tag" = "8:"
             "Folder" = "8:_DA9EB857EE504D24A94FEABCA92FE189"
@@ -596,11 +564,6 @@
             "AssemblyAsmDisplayName" = "8:Google.Protobuf, Version=3.7.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_D28C39F4A44174250FA175695BFB35E7"
-                    {
-                    "Name" = "8:Google.Protobuf.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Google.Protobuf.dll"
             "TargetName" = "8:"
@@ -647,11 +610,6 @@
             "AssemblyAsmDisplayName" = "8:CryptSharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_EBD54BBE134D2372A8F1EDA1F16746CB"
-                    {
-                    "Name" = "8:CryptSharp.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:CryptSharp.dll"
             "TargetName" = "8:"
