@@ -11,7 +11,7 @@ current supported ISP:
  - yahoo
  - gmail
 
-current supported actions :
+current supported actions :  
 FOR SPAM FOLDER :  
 ![](https://i.imgur.com/MQD2WCg.png)  
 
@@ -38,12 +38,7 @@ About subjet and thread :
 
 ![](https://i.imgur.com/TUxNAoF.png)  
  - threads :  number of accounts opened in same time
- - subject : search for emails contains subject 
-
-
-
-
-
+ - subject : search for emails contains that subject 
 
 In order to this application work you need **chrome version 75**
 
