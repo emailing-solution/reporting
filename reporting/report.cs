@@ -73,7 +73,7 @@ namespace reporting
 
         private void Btn_yahoo_action_Click(object sender, EventArgs e)
         {
-
+            //
             if (!Check_yahoo_spam_checked() && !Check_yahoo_inbox_checked())
             {
                 MessageBox.Show("Please select an action to do", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -488,6 +488,7 @@ namespace reporting
 
         private void Btn_gmail_action_Click(object sender, EventArgs e)
         {
+            //
             if (!Check_gmail_spam_checked() && !Check_gmail_inbox_checked())
             {
                 MessageBox.Show("Please select an action to do", "Actions", MessageBoxButtons.OK, MessageBoxIcon.Error);
