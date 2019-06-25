@@ -1,7 +1,7 @@
 # Reporting App
 
-Hi! as i was working in email marketing company we used to warmed our servers using seeds accounts
-this is simple application that help you warming up your servers.
+Hi! as i was working in email marketing company we used to warmed our servers using seeds accounts  
+this is a simple application that help you warming up your servers.
 you simply put your account in this order seperated with **:**
 > account:password:proxy:port
 
