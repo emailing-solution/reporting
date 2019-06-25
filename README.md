@@ -12,14 +12,15 @@ current supported ISP:
  - gmail
 
 current supported actions :
-FOR SPAM FOLDER :
-![](https://i.imgur.com/MQD2WCg.png)
+FOR SPAM FOLDER :  
+![](https://i.imgur.com/MQD2WCg.png)  
+
  - Read - Mark as not spam
  - Select - Mark as not spam
  - select all - mark as not spam
 
-FOR INBOX FOLDER :
-![](https://i.imgur.com/2F8rkGu.png)
+FOR INBOX FOLDER :  
+![](https://i.imgur.com/2F8rkGu.png)  
  - open - archive
  - open - reply -archive
  - open - reply
@@ -31,11 +32,11 @@ FOR INBOX FOLDER :
  - click on your email body link
  - or just connect to your email with no action
 
-You can also delete emails from your seeds accounts
-![](https://i.imgur.com/wU6HMIM.png)
+You can also delete emails from your seeds accounts  
+![](https://i.imgur.com/wU6HMIM.png)  
 About subjet and thread :
 
-![](https://i.imgur.com/TUxNAoF.png)
+![](https://i.imgur.com/TUxNAoF.png)  
  - threads :  number of accounts opened in same time
  - subject : search for emails contains subject 
 
